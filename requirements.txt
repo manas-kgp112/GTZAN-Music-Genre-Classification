@@ -4,4 +4,7 @@ pandas
 seaborn
 matplotlib
 tqdm
+librosa
+ipython
+ipykernel
 -e .
