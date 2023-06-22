@@ -7,4 +7,5 @@ tqdm
 librosa
 ipython
 ipykernel
+scikit-learn
 -e .

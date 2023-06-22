@@ -35,7 +35,9 @@ file_struct = [
     "requirements.txt",
     "setup.py",
     "setup.env",
-    f"logs/init.txt"
+    f"logs/init.txt",
+    f"artifacts/models",
+    f"artifacts/data",
 ]
 
 
