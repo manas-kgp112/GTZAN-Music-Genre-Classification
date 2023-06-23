@@ -12,4 +12,5 @@ dataclasses
 ensure
 python-box
 PyYAML
+xgboost
 -e .

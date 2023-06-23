@@ -1,8 +1,9 @@
 # project pipeline scripts
 from src.entity import (
     DataIngestionConfig,
-    DataTransformationConfig
-)
+    DataTransformationConfig,
+    ModelTrainerConfig
+    )
 from src.constants import *
 from src.utils.common import (
     read_yaml,
@@ -19,9 +20,11 @@ from src.logging import logger
 class ConfigurationManager:
     def __init__(
             self,
+            params = PARAMS_FILE_PATH,
             config = CONFIG_FILE_PATH):
         # storing variables
         self.config = read_yaml(config)
+        self.params = read_yaml(params)
 
 
     # DataIngestionConfiguration Manager function
@@ -50,12 +53,31 @@ class ConfigurationManager:
         # creating directory for transformed data
         create_directories(transformation_config.transformed_data)
 
-        # data_ingestion_config creation
+        # data_transformation_config creation
         data_transformation_config = DataTransformationConfig(
             file_path_30 = transformation_config.file_path_30,
             file_path_3 = transformation_config.file_path_3,
             transformed_data = transformation_config.transformed_data
         )
 
+        logger.info("DataTransformationConfig extracted.")
 
         return data_transformation_config
+    
+
+
+    # ModelTrainerConfiguration Manager function
+    def load_model_trainer_config(self) -> ModelTrainerConfig:
+
+        trainer_config = self.config.model_trainer
+
+        # model_trainer_config creation
+        model_trainer_config = ModelTrainerConfig(
+            train_input_data = trainer_config.train_input_data,
+            test_input_data = trainer_config.test_input_data,
+            save_model_path = trainer_config.save_model_path
+        )
+
+        logger.info("ModelTrainerConfig extracted.")
+
+        return model_trainer_config

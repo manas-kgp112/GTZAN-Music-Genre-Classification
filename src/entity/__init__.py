@@ -25,3 +25,10 @@ class DataTransformationConfig:
     file_path_30 : Path
     file_path_3 : Path
     transformed_data : Path
+
+
+@dataclass
+class ModelTrainerConfig:
+    train_input_data : Path
+    test_input_data : Path
+    save_model_path : Path
