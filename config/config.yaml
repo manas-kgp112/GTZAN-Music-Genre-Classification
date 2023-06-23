@@ -1,0 +1,9 @@
+artifacts_root: artifacts
+
+
+data_ingestion:
+  root_dir: artifacts/data,
+  file_path_30: artifacts/data/features_30_sec.csv
+  file_path_3: artifacts/data/features_3_sec.csv
+
+data_transformation:

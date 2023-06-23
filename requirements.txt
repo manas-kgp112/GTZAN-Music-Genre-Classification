@@ -8,4 +8,8 @@ librosa
 ipython
 ipykernel
 scikit-learn
+dataclasses
+ensure
+python-box
+PyYAML
 -e .

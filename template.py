@@ -18,6 +18,7 @@ logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 file_struct = [
     f"main.py",
     f"src/__init__.py",
+    f"config/config.yaml",
     f"src/components/__init__.py",
     f"src/utils/__init__.py",
     f"src/utils/common.py",
