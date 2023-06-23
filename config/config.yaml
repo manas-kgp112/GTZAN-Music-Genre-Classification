@@ -7,3 +7,6 @@ data_ingestion:
   file_path_3: artifacts/data/features_3_sec.csv
 
 data_transformation:
+  file_path_30: artifacts/data/features_30_sec.csv
+  file_path_3: artifacts/data/features_3_sec.csv
+  transformed_data: artifacts/transformed_data
