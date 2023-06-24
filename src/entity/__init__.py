@@ -32,3 +32,12 @@ class ModelTrainerConfig:
     train_input_data : Path
     test_input_data : Path
     save_model_path : Path
+
+
+
+@dataclass
+class ModelEvalutionConfig:
+    test_input_data : Path
+    model_path : Path
+    metrics_path : Path
+    plots_path : Path

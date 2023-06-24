@@ -27,7 +27,7 @@ class ModelTrainerPipeline:
         model_trainer_config = configuration.load_model_trainer_config()
 
         # Initialising the ModelTrainer constructor
-        data_ingestion = ModelTrainer(config=model_trainer_config)
+        model_trainer = ModelTrainer(config=model_trainer_config)
         # initiating model_trainer sequence
-        data_ingestion.initiate_model_trainer()
+        model_trainer.initiate_model_trainer()
 # ModelTrainerPipeline

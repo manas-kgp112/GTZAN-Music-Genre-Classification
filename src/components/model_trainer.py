@@ -79,7 +79,6 @@ class ModelTrainer:
                 X_train,
                 Y_train
             )
-            return None
         except Exception as e:
             raise e
 

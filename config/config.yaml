@@ -15,3 +15,10 @@ model_trainer:
   train_input_data: artifacts/transformed_data/train.csv
   test_input_data: artifacts/transformed_data/test.csv
   save_model_path: artifacts/models
+
+
+model_evaluation:
+  test_input_data: artifacts/transformed_data/test.csv
+  model_path: artifacts/models
+  metrics_path: artifacts/performance
+  plots_path: artifacts/plots

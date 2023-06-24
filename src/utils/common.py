@@ -5,8 +5,6 @@ from pathlib import Path
 from box import ConfigBox
 import yaml
 import dill
-from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, roc_curve, precision_score, recall_score, f1_score
-
 
 # Custom logging
 from src.logging import logger

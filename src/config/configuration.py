@@ -2,7 +2,8 @@
 from src.entity import (
     DataIngestionConfig,
     DataTransformationConfig,
-    ModelTrainerConfig
+    ModelTrainerConfig,
+    ModelEvalutionConfig
     )
 from src.constants import *
 from src.utils.common import (
@@ -83,3 +84,25 @@ class ConfigurationManager:
         logger.info("ModelTrainerConfig extracted.")
 
         return model_trainer_config
+    
+
+
+    # ModelEvaluationConfiguration Manager function
+    def load_model_evaluation_config(self) -> ModelEvalutionConfig:
+
+        evaluation_config = self.config.model_evaluation
+
+        create_directories(evaluation_config.metrics_path)
+        create_directories(evaluation_config.plots_path)
+
+        # model_evaluation_config creation
+        model_evaluation_config = ModelEvalutionConfig(
+            test_input_data = evaluation_config.test_input_data,
+            model_path = evaluation_config.model_path,
+            metrics_path = evaluation_config.metrics_path,
+            plots_path = evaluation_config.plots_path
+        )
+
+        logger.info("ModelEvaluationConfig extracted.")
+
+        return model_evaluation_config
