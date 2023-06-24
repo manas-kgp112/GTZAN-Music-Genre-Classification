@@ -13,6 +13,12 @@
 9) Saving models as .pkl file
 
 
+### Agenda/Procedure
+
+This project/classifier is broadly divided into 2 sub-parts, data_extraction and model_fitting. Firstly 
+features are extracted using the "librosa" library and stored separately. Then they are used to train a Concoluational Network.
+
+
 ### Folder Structure
 Here is the screenshot if how the folder structure looks like
 
