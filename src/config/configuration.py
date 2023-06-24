@@ -71,6 +71,8 @@ class ConfigurationManager:
 
         trainer_config = self.config.model_trainer
 
+        create_directories(trainer_config.save_model_path)
+
         # model_trainer_config creation
         model_trainer_config = ModelTrainerConfig(
             train_input_data = trainer_config.train_input_data,

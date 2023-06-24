@@ -13,4 +13,5 @@ ensure
 python-box
 PyYAML
 xgboost
+dill
 -e .
