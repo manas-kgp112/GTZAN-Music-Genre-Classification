@@ -33,9 +33,13 @@ class ConfigurationManager:
 
         ingestion_config = self.config.data_ingestion
 
+        # creating directory for data ingestion module storage
+        create_directories(self.config.features_path)
+
         # data_ingestion_config creation
         data_ingestion_config = DataIngestionConfig(
-            root_dir = ingestion_config.root_dir
+            root_dir = ingestion_config.root_dir,
+            features_path = ingestion_config.features_path
         )
         
         logger.info("DataIngestionConfig extracted.")
@@ -49,14 +53,9 @@ class ConfigurationManager:
 
         transformation_config = self.config.data_transformation
 
-        # creating directory for transformed data
-        create_directories(transformation_config.transformed_data)
-
         # data_transformation_config creation
         data_transformation_config = DataTransformationConfig(
-            file_path_30 = transformation_config.file_path_30,
-            file_path_3 = transformation_config.file_path_3,
-            transformed_data = transformation_config.transformed_data
+            features_path = transformation_config.features_path
         )
 
         logger.info("DataTransformationConfig extracted.")

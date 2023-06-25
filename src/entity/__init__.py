@@ -16,13 +16,12 @@ from pathlib import Path
 @dataclass
 class DataIngestionConfig:
     root_dir : Path
+    features_path: Path
 
 
 @dataclass
 class DataTransformationConfig:
-    file_path_30 : Path
-    file_path_3 : Path
-    transformed_data : Path
+    features_path: Path
 
 
 @dataclass
