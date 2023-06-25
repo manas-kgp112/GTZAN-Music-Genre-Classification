@@ -35,9 +35,7 @@ class ConfigurationManager:
 
         # data_ingestion_config creation
         data_ingestion_config = DataIngestionConfig(
-            root_dir = ingestion_config.root_dir,
-            file_path_30 = ingestion_config.file_path_30,
-            file_path_3 = ingestion_config.file_path_3
+            root_dir = ingestion_config.root_dir
         )
         
         logger.info("DataIngestionConfig extracted.")

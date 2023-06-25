@@ -35,11 +35,7 @@ class DataIngestion:
             logger.info("initiating data_ingestion sequence")
             if os.path.exists(self.config.root_dir):
                 if os.path.exists(self.config.file_path_30):
-                    features_30_df = pd.read_csv(self.config.file_path_30)
-                    logger.info(f"{self.config.file_path_30} sucessfully loaded.")
-                if os.path.exists(self.config.file_path_30):
-                    features_3_df = pd.read_csv(self.config.file_path_3)
-                    logger.info(f"{self.config.file_path_3} sucessfully loaded.")
+                    
         except Exception as e:
             raise e
 

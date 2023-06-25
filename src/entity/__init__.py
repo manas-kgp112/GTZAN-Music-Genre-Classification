@@ -16,8 +16,6 @@ from pathlib import Path
 @dataclass
 class DataIngestionConfig:
     root_dir : Path
-    file_path_30 : Path
-    file_path_3 : Path
 
 
 @dataclass

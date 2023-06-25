@@ -14,4 +14,5 @@ python-box
 PyYAML
 xgboost
 dill
+tensorflow
 -e .
