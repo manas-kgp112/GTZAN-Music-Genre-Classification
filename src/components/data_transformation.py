@@ -150,35 +150,32 @@ class DataTransformation:
             if os.path.exists(self.config.features_path):
                 # loading data
                 features = np.load(os.path.join(self.config.features_path, "MusicFeatures.npz"))
+                '''transformation steps'''
+                # extracting features
+                spec = features['spec'] 
+                mel_spec = features['mel'] 
+                mfcc = features['mfcc'] 
+                zcr = features['zcr'] 
+                spec_c = features['cen'] 
+                chr = features['chroma'] 
+                y = features['target']
+
+                # SPLIT THE TARGET INTO TRAIN AND TEST
+                y_train, y_test  = train_test_split(y, test_size=0.2, random_state=42)
+                
+                
+                # Data Transformation
+                '''
+                    1) spectrogram
+                    2) mfcc
+                    3) mel spectrogram
+                '''
+                self.transform_spectrogram(spec, y_train, y_test)
+                self.transform_mfcc(mfcc, y_train, y_test)
+                self.transform_mel_spectrogram(mel_spec, y_train, y_test)
             else:
                 logger.error(f"Music Features file not found at {self.config.features_path}.")
                 logger.error(f"Run the data_ingestion pipeline or check the directory permissions.")
-
-
-            '''transformation steps'''
-            # extracting features
-            spec = features['spec'] 
-            mel_spec = features['mel'] 
-            mfcc = features['mfcc'] 
-            zcr = features['zcr'] 
-            spec_c = features['cen'] 
-            chr = features['chroma'] 
-            y = features['target']
-
-            # SPLIT THE TARGET INTO TRAIN AND TEST
-            y_train, y_test  = train_test_split(y, test_size=0.2, random_state=42)
-            
-            
-            # Data Transformation
-            '''
-                1) spectrogram
-                2) mfcc
-                3) mel spectrogram
-            '''
-            self.transform_spectrogram(spec, y_train, y_test)
-            self.transform_mfcc(mfcc, y_train, y_test)
-            self.transform_mel_spectrogram(mel_spec, y_train, y_test)
-
 
 
         except Exception as e:

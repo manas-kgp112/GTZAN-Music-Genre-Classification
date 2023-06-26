@@ -16,4 +16,6 @@ xgboost
 dill
 tensorflow
 opencv-python
+pydot
+graphviz
 -e .
