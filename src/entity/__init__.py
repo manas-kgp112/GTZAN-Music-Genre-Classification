@@ -26,8 +26,7 @@ class DataTransformationConfig:
 
 @dataclass
 class ModelTrainerConfig:
-    train_input_data : Path
-    test_input_data : Path
+    features_path: Path
     save_model_path : Path
 
 

@@ -34,7 +34,7 @@ class ConfigurationManager:
         ingestion_config = self.config.data_ingestion
 
         # creating directory for data ingestion module storage
-        create_directories(self.config.features_path)
+        create_directories(ingestion_config.features_path)
 
         # data_ingestion_config creation
         data_ingestion_config = DataIngestionConfig(
@@ -73,8 +73,7 @@ class ConfigurationManager:
 
         # model_trainer_config creation
         model_trainer_config = ModelTrainerConfig(
-            train_input_data = trainer_config.train_input_data,
-            test_input_data = trainer_config.test_input_data,
+            features_path = trainer_config.features_path,
             save_model_path = trainer_config.save_model_path
         )
 

@@ -9,8 +9,7 @@ data_transformation:
   features_path: artifacts/data/features
 
 model_trainer:
-  train_input_data: artifacts/transformed_data/train.csv
-  test_input_data: artifacts/transformed_data/test.csv
+  features_path: artifacts/data/features
   save_model_path: artifacts/models
 
 
