@@ -15,4 +15,5 @@ PyYAML
 xgboost
 dill
 tensorflow
+opencv-python
 -e .
