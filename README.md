@@ -51,19 +51,19 @@ Below are the detailed descriptions of the sub-directories of the project.
     - 2 csv's already with dataset
 
 
-- **-> models : 3 models**
+- **models : 3 models**
 
     - contains the saved models after training.
 
-- **-> performance : .txt files**
+- **performance : .txt files**
 
     - contains performance metrics for models trained on data using the csv's (not the extracted features)
 
-- **-> plots : .png files**
+- **plots : .png files**
 
     - contains confusion matrix for the final ensemble model trained on extracted features.
 
-- **-> transformed_data : 2 .csv**
+- **transformed_data : 2 .csv**
 
     - contains csv files of transformed data while training models using csv data.
 
