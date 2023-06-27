@@ -6,9 +6,17 @@ from box import ConfigBox
 import yaml
 import dill
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, roc_curve, precision_score, recall_score, f1_score
+
 
 # Custom logging
 from src.logging import logger
+
+# constants
+from src.constants import class_names
 
 
 '''
@@ -85,3 +93,24 @@ def get_majority_vote(pred_arr:list):
         return votes
     except Exception as e:
         raise e
+    
+
+
+def evaluate_performance(y_pred, y_true, config, feature):
+    correct = len(y_pred) - np.count_nonzero(y_pred - y_true)
+    acc = correct/ len(y_pred)
+    acc = np.round(acc, 4) * 100
+
+    print("Accuracy: ", correct, "/", len(y_pred), " = ", acc, "%")
+
+    # class_names = ["Blues", "Classical", "Country", "Disco", "Hiphop", "Jazz", "Metal", "Pop", "Reggae", "Rock"]
+    conf_mat = confusion_matrix(y_true, y_pred, normalize= 'true')
+    conf_mat = np.round(conf_mat, 2)
+
+    conf_mat_df = pd.DataFrame(conf_mat, columns= class_names, index= class_names)
+
+    plt.figure(figsize = (10,7), dpi = 200)
+    sns.set(font_scale=1.4)
+    sns.heatmap(conf_mat_df, annot=True, annot_kws={"size": 16}) # font size
+    plt.tight_layout()
+    plt.savefig(os.path.join(config.plots_path, f"{feature}_conf_mat.png") + "/new_ensemble_mfcc_conf_mat.png")

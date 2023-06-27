@@ -14,7 +14,7 @@ model_trainer:
 
 
 model_evaluation:
-  test_input_data: artifacts/transformed_data/test.csv
-  model_path: artifacts/models
+  features_path: artifacts/data/features
+  save_model_path: artifacts/models
   metrics_path: artifacts/performance
   plots_path: artifacts/plots

@@ -42,26 +42,26 @@ class ModelTrainer:
             mel_spec_data = np.load(self.config.features_path, "mel_spectrogram_features.npz")
 
             spec_train = spec_data['spec_train']
-            spec_test = spec_data['spec_test']
+            # spec_test = spec_data['spec_test']
             mfcc_train = mfcc_data['mfcc_train']
-            mfcc_test = mfcc_data['mfcc_test']
+            # mfcc_test = mfcc_data['mfcc_test']
             mel_spec_train = mel_spec_data['mel_train']
-            mel_spec_test = mel_spec_data['mel_test']
+            # mel_spec_test = mel_spec_data['mel_test']
             y_train = spec_data['y_train']
-            y_test = spec_data['y_test']
+            # y_test = spec_data['y_test']
 
             logger.info("Input data extracted for model training..")
 
 
             return (
                 spec_train,
-                spec_test,
+                # spec_test,
                 mfcc_train,
-                mfcc_test,
+                # mfcc_test,
                 mel_spec_train,
-                mel_spec_test,
-                y_train,
-                y_test
+                # mel_spec_test,
+                y_train
+                # y_test
             )
         except Exception as e:
             raise e
@@ -69,8 +69,7 @@ class ModelTrainer:
 
     def initiate_model_trainer(self):
         try:
-            spec_train, spec_test, mfcc_train, mfcc_test, mel_spec_train, mel_spec_test, y_train, y_test = self.get_input_data()
-            model_path = self.config.save_model_path
+            spec_train, mfcc_train, mel_spec_train, y_train = self.get_input_data()
 
             # <---- Collecting compiled models ---->
             logger.info("Loading all custom models.")

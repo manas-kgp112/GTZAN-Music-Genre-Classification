@@ -104,8 +104,8 @@ class ConfigurationManager:
 
         # model_evaluation_config creation
         model_evaluation_config = ModelEvalutionConfig(
-            test_input_data = evaluation_config.test_input_data,
-            model_path = evaluation_config.model_path,
+            features_path = evaluation_config.features_path,
+            save_model_path = evaluation_config.save_model_path,
             metrics_path = evaluation_config.metrics_path,
             plots_path = evaluation_config.plots_path
         )

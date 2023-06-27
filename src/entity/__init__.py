@@ -42,7 +42,7 @@ class ModelTrainerConfig:
 
 @dataclass
 class ModelEvalutionConfig:
-    test_input_data : Path
-    model_path : Path
+    features_path: Path
+    save_model_path : Path
     metrics_path : Path
     plots_path : Path
