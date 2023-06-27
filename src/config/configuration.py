@@ -68,13 +68,24 @@ class ConfigurationManager:
     def load_model_trainer_config(self) -> ModelTrainerConfig:
 
         trainer_config = self.config.model_trainer
+        trainer_params = self.params.TrainingArguments
 
         create_directories(trainer_config.save_model_path)
 
         # model_trainer_config creation
         model_trainer_config = ModelTrainerConfig(
             features_path = trainer_config.features_path,
-            save_model_path = trainer_config.save_model_path
+            save_model_path = trainer_config.save_model_path,
+            spec_epochs = trainer_params.spec_epochs,
+            spec_batch = trainer_params.spec_batch,
+            spec_verbose = trainer_params.spec_verbose,
+            mfcc_epochs = trainer_params.mfcc_epochs,
+            mfcc_batch = trainer_params.mfcc_batch,
+            mfcc_verbose = trainer_params.mfcc_verbose,
+            mel_spec_epochs = trainer_params.mel_spec_epochs,
+            mel_spec_batch = trainer_params.mel_spec_batch,
+            mel_spec_verbose = trainer_params.mel_spec_verbose
+            
         )
 
         logger.info("ModelTrainerConfig extracted.")

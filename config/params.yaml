@@ -1,2 +1,10 @@
 TrainingArguments:
-  num_train_epochs: 5
+  spec_epochs: 100
+  spec_batch: 32
+  spec_verbose: 1
+  mfcc_epochs: 100
+  mfcc_batch: 32
+  mfcc_verbose: 1
+  mel_spec_epochs: 100
+  mel_spec_batch: 32
+  mel_spec_verbose: 1

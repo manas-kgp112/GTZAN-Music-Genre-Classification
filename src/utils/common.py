@@ -5,6 +5,7 @@ from pathlib import Path
 from box import ConfigBox
 import yaml
 import dill
+import numpy as np
 
 # Custom logging
 from src.logging import logger
@@ -60,13 +61,27 @@ def save_object(object, file_path:str):
 
 
 
-def train_model(model, model_title, X, Y, model_path):
+def get_majority_vote(pred_arr:list):
 
-    # This function evaluate a model's performace and stores the metrics in an array
+    # This function takes the majority prediction as output out of all the predictions available for vote.
 
     try:
-        logger.info(f"Training initiated for {model_title}")
-        model.fit(X, Y)
-        save_object(model, os.path.join(model_path, f"{model_title}.pkl"))
+        len_pred = len(pred_arr[0])
+        votes = []
+
+        for i in len_pred:
+            voters = [e[i] for e in pred_arr]
+            voters = np.array(voters)
+
+            # getting unique values
+            uniq, freq = np.unique(voters, return_counts=True)
+            max_val_index = np.argmax(freq)
+            vote = uniq[max_val_index]
+
+            votes.append(vote)
+
+
+        votes = np.array(votes)
+        return votes
     except Exception as e:
         raise e

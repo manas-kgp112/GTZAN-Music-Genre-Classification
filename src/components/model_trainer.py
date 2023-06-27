@@ -3,8 +3,8 @@ import os
 import sys
 import pandas as pd
 import numpy as np
-from dataclasses import dataclass
-from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, roc_curve
+import tensorflow as tf
+from tensorflow import keras
 
 
 # CNN architecture imports
@@ -20,10 +20,6 @@ from src.logging import logger
 
 # Config and sub-process scripts
 from src.entity import ModelTrainerConfig
-
-
-# Utility function
-from src.utils.common import train_model
 
 
 '''
@@ -54,6 +50,8 @@ class ModelTrainer:
             y_train = spec_data['y_train']
             y_test = spec_data['y_test']
 
+            logger.info("Input data extracted for model training..")
+
 
             return (
                 spec_train,
@@ -75,6 +73,7 @@ class ModelTrainer:
             model_path = self.config.save_model_path
 
             # <---- Collecting compiled models ---->
+            logger.info("Loading all custom models.")
             # 1) spectrogram model
             cnn_spec = CNN_spec(input_shape=(spec_train[0].shape))
             spec_model = cnn_spec.compiled_model()
@@ -86,5 +85,55 @@ class ModelTrainer:
             # 3) mel_spectrogram model
             cnn_mel_spec = CNN_mel_spec(input_shape=(mel_spec_train[0].shape))
             mel_spec_model = cnn_mel_spec.compiled_model()
+
+
+
+            # <------ MODEL TRAINING ------->
+            logger.info("Initialising checkpoints")
+
+            # checkpoint initialization
+            checkpoint_spec_model = keras.callbacks.ModelCheckpoint(os.path.join(self.config.save_model_path, "spec_model_{epoch:03d}.h5"), period=5)
+            checkpoint_mfcc_model = keras.callbacks.ModelCheckpoint(os.path.join(self.config.save_model_path, "mfcc_model_{epoch:03d}.h5"), period=5)
+            checkpoint_mel_spec_model = keras.callbacks.ModelCheckpoint(os.path.join(self.config.save_model_path, "mel_spec_model_{epoch:03d}.h5"), period=5)
+
+
+            # fitting models
+            logger.info("Training started for Spectrogram")
+            spec_model.fit(
+                spec_train,
+                y_train,
+                epochs=self.config.spec_epochs,
+                callbacks=[checkpoint_spec_model],
+                batch_size=self.config.spec_batch,
+                verbose=self.config.spec_verbose
+            )
+
+            logger.info("Training started for MFCC")
+            mfcc_model.fit(
+                mfcc_train,
+                y_train,
+                epochs=self.config.mfcc_batch,
+                callbacks=[checkpoint_mfcc_model],
+                batch_size=self.config.mfcc_batch,
+                verbose=self.config.mfcc_verbose
+            )
+
+            logger.info("Training started for MelSpectrogram")
+            mel_spec_model.fit(
+                mel_spec_train,
+                y_train,
+                epochs=self.config.mel_spec_batch,
+                callbacks=[checkpoint_mel_spec_model],
+                batch_size=self.config.mel_spec_batch,
+                verbose=self.config.mel_spec_verbose
+            )
+
+
+            # saving models
+            spec_model.save(os.path.join(self.config.save_model_path, "spectrogram.h5"))
+            mfcc_model.save(os.path.join(self.config.save_model_path, "mfcc.h5"))
+            mel_spec_model.save(os.path.join(self.config.save_model_path, "mel_spectrogram.h5"))
+
+            logger.info(f"All models have been successfully saved at {self.config.save_model_path}")
         except Exception as e:
             raise e
