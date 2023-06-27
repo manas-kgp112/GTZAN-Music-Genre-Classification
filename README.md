@@ -34,53 +34,55 @@ Below are the detailed descriptions of the sub-directories of the project.
 
 <------   EOS   -------->
 
-1) artifacts : Contains all the input and output data related to the project (input data, final models, preprocessor files etc.). This github repository doesn't contain the folder "artifacts". While cloning the repository, create a folder named "artifacts" and structure it using the steps given below.
+1. artifacts : Contains all the input and output data related to the project (input data, final models, preprocessor files etc.).
+
+>This github repository doesn't contain the folder "artifacts". While cloning the repository, create a folder named "artifacts" and structure it using the steps given below.
 
 ![artifacts folder structure](/custom_img/artifacts.jpg)
 
 **-> data : 3 folders & 2 files**
 
-i] features (folder) : contains the extracted features {spectrogram, mfcc, zcr etc.} in .npz format
+- features (folder) : contains the extracted features {spectrogram, mfcc, zcr etc.} in .npz format
 
-ii] genres_original : contains all the audio files in .mp3 format
+- genres_original : contains all the audio files in .mp3 format
 
-iii] images_original : some extracted feature images given with extracted dataset.
+- images_original : some extracted feature images given with extracted dataset.
 
-iv] 2 csv's already with dataset
+- 2 csv's already with dataset
 
 
 **-> models : 3 models**
 
-i] contains the saved models after training.
+- contains the saved models after training.
 
 **-> performance : .txt files**
 
-i] contains performance metrics for models trained on data using the csv's (not the extracted features)
+- contains performance metrics for models trained on data using the csv's (not the extracted features)
 
 **-> plots : .png files**
 
-i] contains confusion matrix for the final ensemble model trained on extracted features.
+- contains confusion matrix for the final ensemble model trained on extracted features.
 
 ** -> transformed_data : 2 .csv **
 
-i] contains csv files of transformed data while training models using csv data.
+- contains csv files of transformed data while training models using csv data.
 
 <------   EOS   -------->
 
-2) res : Contains the jupyter notebooks used as the base for creating the models and pipelines. Contains 4 notebooks. [GenreClassification.ipynb](./res/GenreClassification.ipynb) is trained with dataset csv's and rest are with extracted features.
+2. res : Contains the jupyter notebooks used as the base for creating the models and pipelines. Contains 4 notebooks. [GenreClassification.ipynb](./res/GenreClassification.ipynb) is trained with dataset csv's and rest are with extracted features.
 
 <------   EOS   -------->
 
-4) src : This is the main folder of the project, it contains all the scripts for running our project such as data_inigestion pipelines, data_transformation pipelines, model_training pipelines etc.It also contains 
+3. src : This is the main folder of the project, it contains all the scripts for running our project such as data_inigestion pipelines, data_transformation pipelines, model_training pipelines etc.It also contains 
 all the custom logs and configuration files.
 
 <------   EOS   -------->
 
-5) config : Contains configuration and parameters .yaml files.
+4. config : Contains configuration and parameters .yaml files.
 
 <------   EOS   -------->
 
-6) logs: contains all the log files
+5. logs: contains all the log files
 
 
 ### How to test the project application?
