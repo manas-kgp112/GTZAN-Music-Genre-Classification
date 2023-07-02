@@ -9,6 +9,7 @@ from datetime import datetime
 '''
     This script deals with custom logging feature inherting the standard logging module
     (No need to seprately import CustomLogging module)
+    
 '''
 
 # variables to setup logging
